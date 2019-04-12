@@ -1,0 +1,5 @@
+
+Desafio Django / Python
+- Trazer lista completa de Followers da conta https://www.instagram.com/evolutioncoffee/ via Scripting (Pode usar Webscraping, API, etc, etc)
+- Desenvolver Django para CRUD e visualização dos dados
+- Enviar instruções de instalação
