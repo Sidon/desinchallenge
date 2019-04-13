@@ -225,3 +225,104 @@ Listar os followers cujo flag de privacidade seja Private
 =========================================================
 
     $ curl -H 'Accept:application/json;indent=4' -u admin:master.21  desinchallenge.herokuapp.com/api/followers/?isprivate
+
+.. code-block::
+
+    [
+    {
+        "id_instagram": 32842718,
+        "full_name": "Augusto Gonçalves",
+        "user_name": "augusto_1977",
+        "profile_url": "https://www.instagram.com/augusto_1977",
+        "is_private": "Private",
+        "links": {
+            "self": "http://localhost:8000/api/followers/1/"
+        }
+    },
+    {
+        "id_instagram": 1401570783,
+        "full_name": "Brenah",
+        "user_name": "breninhavasconcelos",
+        "profile_url": "https://www.instagram.com/breninhavasconcelos",
+        "is_private": "Private",
+        "links": {
+            "self": "http://localhost:8000/api/followers/4/"
+        }
+    },
+
+    ....
+
+
+Busca pelo `id` no instagram
+============================
+
+.. code-block::
+
+    $ curl -H 'Accept:application/json;indent=4' -u admin:master.21  localhost:8000/api/followers/?idinstagram=1524004563
+    [
+        {
+            "id_instagram": 1524004563,
+            "full_name": "Sidon Duarte",
+            "user_name": "sidonduarte",
+            "profile_url": "https://www.instagram.com/sidonduarte",
+            "is_private": null,
+            "links": {
+                "self": "http://localhost:8000/api/followers/40/"
+            }
+        }
+    ]
+
+
+Busca pelo Username no instagram
+=================================
+
+.. code-block::
+
+     curl -H 'Accept:application/json;indent=4' -u admin:master.21  localhost:8000/api/followers/?username=sidonduarte
+    [
+        {
+            "id_instagram": 1524004563,
+            "full_name": "Sidon Duarte",
+            "user_name": "sidonduarte",
+            "profile_url": "https://www.instagram.com/sidonduarte",
+            "is_private": null,
+            "links": {
+                "self": "http://localhost:8000/api/followers/40/"
+            }
+        }
+    ]
+
+
+
+Busca por uma parte do Full Name
+================================
+
+.. code-block::
+
+    curl -H 'Accept:application/json;indent=4' -u admin:master.21  localhost:8000/api/followers/?fullname=sidon
+
+    [
+        {
+            "id_instagram": 1524004563,
+            "full_name": "Sidon Duarte",
+            "user_name": "sidonduarte",
+            "profile_url": "https://www.instagram.com/sidonduarte",
+            "is_private": null,
+            "links": {
+                "self": "http://localhost:8000/api/followers/40/"
+            }
+        },
+        {
+            "id_instagram": 3259086590,
+            "full_name": "Savio Possidonio",
+            "user_name": "saviopossidonio",
+            "profile_url": "https://www.instagram.com/saviopossidonio",
+            "is_private": null,
+            "links": {
+                "self": "http://localhost:8000/api/followers/9773/"
+            }
+        }
+    ]
+
+
+

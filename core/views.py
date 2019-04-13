@@ -109,6 +109,7 @@ class FollowerViewSet(DefaultsMixin, LoggingMixin, viewsets.ModelViewSet):
     search_fields = ('full_name' )
     queryset = Follower.objects.all()
 
+
     def get_queryset(self):
         queryset = Follower.objects.all()
         limit = self.request.query_params.get('limit', None)
@@ -126,7 +127,10 @@ class FollowerViewSet(DefaultsMixin, LoggingMixin, viewsets.ModelViewSet):
         idinstagram = self.request.query_params.get('idinstagram', None)
 
         # Filtrando pelo user_name
-        user_name = self.request.query_params.get('usename', None)
+        user_name = self.request.query_params.get('username', None)
+
+        # Filtrando por parte do full_name
+        full_name = self.request.query_params.get('fullname', None)
 
         if empty:
             try:
@@ -136,11 +140,13 @@ class FollowerViewSet(DefaultsMixin, LoggingMixin, viewsets.ModelViewSet):
                 print(e)
 
         if is_private:
-            return queryset.filter(isprivate='Private')
+            return queryset.filter(is_private='Private')
         elif idinstagram:
             return queryset.filter(id_instagram=idinstagram)
         elif user_name:
             return queryset.filter(user_name=user_name)
+        elif full_name:
+            return queryset.filter(full_name__contains=full_name)
         elif limit:
             return queryset[:int(limit)]
 
