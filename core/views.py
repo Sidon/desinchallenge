@@ -116,7 +116,7 @@ class FollowerViewSet(DefaultsMixin, LoggingMixin, viewsets.ModelViewSet):
         empty = self.request.query_params.get('empty', None)
 
         # Filtrando por privacidade
-        is_private = self.request.query_params.get('is_private', None)
+        is_private = self.request.query_params.get('isprivate', None)
 
 
         # Filtrando por limite
