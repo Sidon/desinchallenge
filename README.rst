@@ -278,7 +278,7 @@ Busca pelo Username no instagram
 
 .. code-block::
 
-     curl -H 'Accept:application/json;indent=4' -u admin:master.21  localhost:8000/api/followers/?username=sidonduarte
+    $ curl -H 'Accept:application/json;indent=4' -u admin:master.21  localhost:8000/api/followers/?username=sidonduarte
     [
         {
             "id_instagram": 1524004563,
@@ -299,8 +299,7 @@ Busca por uma parte do Full Name
 
 .. code-block::
 
-    curl -H 'Accept:application/json;indent=4' -u admin:master.21  localhost:8000/api/followers/?fullname=sidon
-
+    $ curl -H 'Accept:application/json;indent=4' -u admin:master.21  localhost:8000/api/followers/?fullname=sidon
     [
         {
             "id_instagram": 1524004563,
