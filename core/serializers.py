@@ -10,7 +10,7 @@ class FolowerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Follower
-        fields = ('id_instagram', 'full_name', 'user_name', 'profile_url', 'links')
+        fields = ('id_instagram', 'full_name', 'user_name', 'profile_url', 'is_private', 'links')
 
     def get_links(self, obj):
         request = self.context['request']

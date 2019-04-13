@@ -136,7 +136,7 @@ class FollowerViewSet(DefaultsMixin, LoggingMixin, viewsets.ModelViewSet):
                 print(e)
 
         if is_private:
-            return queryset.filter(is_private=is_private)
+            return queryset.filter(isprivate='Private')
         elif idinstagram:
             return queryset.filter(id_instagram=idinstagram)
         elif user_name:
