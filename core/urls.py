@@ -13,7 +13,6 @@ router.register(r'followers', views.FollowerViewSet)
 urlpatterns = [
     url(r'^$', views.FollowerListView.as_view(), name='home'),
     url('update-follower/(?P<pk>[\w-]+)$', views.FollowerUpdateView.as_view(), name='update1'),
-    url(r'filtro1', views.FilteredFollowerListView.as_view(), name='filter1'),
     url(r'readme/', views.ReadMeView.as_view(), name='readme'),
 
     # url(r'consultas/', views.ConsultaListView.as_view(), name='consultas'),

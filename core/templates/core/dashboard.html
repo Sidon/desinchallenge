@@ -37,23 +37,16 @@
                 <ul class="nav">
                     <li class="nav-item {% if request.resolver_match.view_name == "core:home" %}active{% endif %}">
                         <a class="nav-link" href="{% url 'core:home' %}">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>Home</p>
-                        </a>
-                    </li>
-
-
-                    <li class="nav-item {% if request.resolver_match.view_name == "core:filter1" %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'core:filter1' %}">
-                            <i class="nc-icon nc-layers-3"></i>
+                            <i class="nc-icon nc-circle-09"></i>
                             <p>Followers</p>
                         </a>
                     </li>
 
 
+
                     <li class="nav-item {% if request.resolver_match.view_name == "core:readme" %}active{% endif %}">
                         <a class="nav-link" href="{% url 'core:readme' %}">
-                            <i class="nc-icon nc-settings-gear-64"></i>
+                            <i class="nc-icon nc-notes"></i>
                             <p>read me</p>
                         </a>
                     </li>
@@ -172,7 +165,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.sidon.net.br.com">Sidon</a>, made with love. :-)
+                            <a href="http://www.sidon.net.br">Sidon</a>, made with love. :-)
                         </p>
                     </nav>
                 </div>

@@ -155,15 +155,53 @@ API Root:
 
 .. code-block::
 
+
     $ curl https://desinchallenge.herokuapp.com/api/
-      "api/logging":"https:/desinchallenge.herokuapp.com/api/api/logging/"}
+    {"followers":"https://desinchallenge.herokuapp.com/api/followers/"}
 
 
 Listar todos os followers
 =========================
 
+
+.. code-block::
+
+    curl -H 'Accept: application/json; indent=4' -u admin:master.21 desinchallenge.herokuapp.com/api/followers/
+
+[
+    {
+        "id_instagram": 32842718,
+        "full_name": "Augusto Gonçalves",
+        "user_name": "augusto_1977",
+        "profile_url": "https://www.instagram.com/augusto_1977",
+        "links": {
+            "self": "http://desinchallenge.herokuapp.com/api/followers/1/"
+        }
+    },
+    {
+        "id_instagram": 1417072262,
+        "full_name": "Roberta Mellara",
+        "user_name": "melararoberta",
+        "profile_url": "https://www.instagram.com/melararoberta",
+        "links": {
+            "self": "http://desinchallenge.herokuapp.com/api/followers/2/"
+        }
+    },
+
+
+    ...
+
+
 Listar somente as 2 primeiras followers
 =======================================
+
+.. code-block::
+
+        curl -H 'Accept:application/json;indent=4' -u admin:master.21  desinchallenge.herokuapp.com/api/followers/?limit=2
+
+
+
+
 
 Listar baseado no critério: come-soon
 ========================================================

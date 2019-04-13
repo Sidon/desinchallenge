@@ -44,6 +44,7 @@ class FollowerListView(ListView):
     model = Follower
     template_name = 'core/follower_list.html'
     context_object_name = 'Follower'
+    filterset_class = FollowerFilter
 
     def get_context_data(self, **kwargs):
         context = super(FollowerListView, self).get_context_data(**kwargs)
@@ -103,28 +104,6 @@ class FollowerUpdateView(UpdateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class FilteredFollowerListView(SingleTableMixin, FilterView):
-    table_class = FollowerTable
-    model = Follower
-    template_name = 'core/follower_list.html'
-    filterset_class = FollowerFilter
-
-    def get_table_data(self):
-        f = FollowerFilter(self.request.GET, queryset=Follower.objects.all().order_by('full_name'), request=self.request)
-        return f
-
-    def get_context_data(self, **kwargs):
-        context = super(FilteredFollowerListView, self).get_context_data(**kwargs)
-        f = FollowerFilter(self.request.GET, queryset=Follower.objects.all().order_by('full_name'), request=self.request)
-        context['form'] = f.form
-        return context
-
-    #     # table = FollowerTable(Follower.objects.all().order_by('full_name'))
-    #     RequestConfig(self.request, ).configure(table)
-    #     # context['table'] = table
-    #     return context
-
-
 class FollowerViewSet(DefaultsMixin, LoggingMixin, viewsets.ModelViewSet):
     serializer_class = FolowerSerializer
     search_fields = ('full_name' )
@@ -139,21 +118,30 @@ class FollowerViewSet(DefaultsMixin, LoggingMixin, viewsets.ModelViewSet):
         # Filtrando por privacidade
         is_private = self.request.query_params.get('is_private', None)
 
-        if empty is not None:
+
+        # Filtrando por limite
+        limit = self.request.query_params.get('limit', None)
+
+        # Filtrando pelo id no instagram
+        idinstagram = self.request.query_params.get('idinstagram', None)
+
+        # Filtrando pelo user_name
+        user_name = self.request.query_params.get('usename', None)
+
+        if empty:
             try:
                 Follower.objects.all().delete()
                 raise ValidationError('Empty Ok')
             except Exception as e:
                 print(e)
 
+        if is_private:
+            return queryset.filter(is_private=is_private)
+        elif idinstagram:
+            return queryset.filter(id_instagram=idinstagram)
+        elif user_name:
+            return queryset.filter(user_name=user_name)
+        elif limit:
+            return queryset[:int(limit)]
+
         return queryset
-
-    def _perform(self, anterior):
-        self.request.query_params._mutable = True
-        self.request.query_params['user'] = self.request.user
-
-        return  {"user_id": str(self.request.user), "id_instagram": self.request.POST.get("id_instagram"),
-                "dados_atual": self.request.POST.get("dados_Consulta"),
-                "dados_anterior": anterior}
-
-
