@@ -6,7 +6,9 @@ from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 from core.urls import router
 
+
 app_name = 'desinchallenge'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -15,6 +15,7 @@ from .serializers import FolowerSerializer, TrackSerializer, LogdbSerializer
 from .tables import FollowerTable, LogdbTable
 from .forms import FollowerForm, FollowerFilter
 
+
 class DefaultsMixin(object):
     """Default settings for view authentication, permissions, filtering
      and pagination."""
@@ -81,11 +82,13 @@ class ReadMeView(TemplateView):
     template_name = "core/readme.html"
 
     def get_context_data(self, **kwargs):
-        rst_file = os.path.join(settings.BASE_DIR, 'README.rst')
+        rst_file = kwargs['rst_file']
         with open(rst_file, 'r') as f:
             text = f.read()
 
-        print(text)
+        print(kwargs)
+
+
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         context['text'] = text

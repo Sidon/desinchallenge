@@ -1,8 +1,7 @@
 from django.db import models
 
-# Create your models here.
-
 bnull = dict(blank=True, null=True)
+
 
 class Follower(models.Model):
     id_instagram = models.IntegerField('Id Instagram', unique=True)

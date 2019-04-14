@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django_tables2',
     'bootstrap4',
     'django_markup',
+    'rest_framework_swagger',
     'core'
 ]
 

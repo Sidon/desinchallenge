@@ -4,7 +4,7 @@
 
 
 Descrição
-***********
+**********
 
 | O teste consiste em implementar um caso de uso.
 | Trazer lista completa de Followers da conta https://www.instagram.com/evolutioncoffee/ via Scripting (Pode usar Webscraping, API, etc, etc)
@@ -58,7 +58,7 @@ Instalação local
     $ cd desinchallenge
 
 
-3 - Crie um ambiente virtual com seu gerenciador de venv, exempo com miniconda:
+3 - Crie um ambiente virtual com seu gerenciador de venv, exemplo com miniconda:
 
 .. code-block::
 
@@ -113,45 +113,27 @@ Recriação do Banco de dados (Opcional)
 Execução local (modo dev)
 *************************
 
-    Para execução local execute o `runserver` informando o numero da porta, o default é `8000`
+1 - Execute o `runserver` informando o numero da porta, o default é `8000`
 
 .. code-block::
 
     $ manage.py runserver 8000
 
-
-
-4 - Execute os testes do sistema :
-
-.. code-block::
-
-    $ python manage.py test
-
-5 -  Crie o banco de dados com os dados iniciais
-
-.. code-block::
-
-    $ python manage.py initialdata
-
-
-6 -  Execute a aplicação:
-
-.. code-block::
-
-    $ python manage.py runserver
-
-7 -  Acesse a pagina principal
+2 -  Acesse a pagina principal
 
 .. code-block::
 
     http://127.0.0.1:8000/
 
 
+
+#########################
 Acessando a API via Curl
-*************************
+#########################
+
 
 API Root:
-============
+*********
 
 .. code-block::
 
@@ -160,7 +142,7 @@ API Root:
     {"followers":"https://desinchallenge.herokuapp.com/api/followers/"}
 
 
-Listar todos os followers
+Listar todos os registros
 =========================
 
 
@@ -174,6 +156,7 @@ Listar todos os followers
             "full_name": "Augusto Gonçalves",
             "user_name": "augusto_1977",
             "profile_url": "https://www.instagram.com/augusto_1977",
+            "is_private": "Private",
             "links": {
                 "self": "http://desinchallenge.herokuapp.com/api/followers/1/"
             }
@@ -183,16 +166,16 @@ Listar todos os followers
             "full_name": "Roberta Mellara",
             "user_name": "melararoberta",
             "profile_url": "https://www.instagram.com/melararoberta",
+            "is_private": null,
             "links": {
                 "self": "http://desinchallenge.herokuapp.com/api/followers/2/"
             }
         },
-
-
         ...
+    ]
 
 
-Listar somente as 2 primeiras followers
+Listar somente os 2 primeiras registros
 =======================================
 
 .. code-block::
@@ -204,6 +187,7 @@ Listar somente as 2 primeiras followers
             "full_name": "Augusto Gonçalves",
             "user_name": "augusto_1977",
             "profile_url": "https://www.instagram.com/augusto_1977",
+            "is_private": "Private",
             "links": {
                 "self": "http://desinchallenge.herokuapp.com/api/followers/1/"
             }
@@ -213,6 +197,7 @@ Listar somente as 2 primeiras followers
             "full_name": "Roberta Mellara",
             "user_name": "melararoberta",
             "profile_url": "https://www.instagram.com/melararoberta",
+            "is_private": null,
             "links": {
                 "self": "http://desinchallenge.herokuapp.com/api/followers/2/"
             }
@@ -220,8 +205,7 @@ Listar somente as 2 primeiras followers
     ]
 
 
-
-Listar os followers cujo flag de privacidade seja Private
+Listar os registros cujo flag de privacidade seja Private
 =========================================================
 
     $ curl -H 'Accept:application/json;indent=4' -u admin:master.21  desinchallenge.herokuapp.com/api/followers/?isprivate
@@ -229,28 +213,29 @@ Listar os followers cujo flag de privacidade seja Private
 .. code-block::
 
     [
-    {
-        "id_instagram": 32842718,
-        "full_name": "Augusto Gonçalves",
-        "user_name": "augusto_1977",
-        "profile_url": "https://www.instagram.com/augusto_1977",
-        "is_private": "Private",
-        "links": {
-            "self": "http://localhost:8000/api/followers/1/"
-        }
-    },
-    {
-        "id_instagram": 1401570783,
-        "full_name": "Brenah",
-        "user_name": "breninhavasconcelos",
-        "profile_url": "https://www.instagram.com/breninhavasconcelos",
-        "is_private": "Private",
-        "links": {
-            "self": "http://localhost:8000/api/followers/4/"
-        }
-    },
+        {
+            "id_instagram": 32842718,
+            "full_name": "Augusto Gonçalves",
+            "user_name": "augusto_1977",
+            "profile_url": "https://www.instagram.com/augusto_1977",
+            "is_private": "Private",
+            "links": {
+                "self": "http://localhost:8000/api/followers/1/"
+            }
+        },
+        {
+            "id_instagram": 1401570783,
+            "full_name": "Brenah",
+            "user_name": "breninhavasconcelos",
+            "profile_url": "https://www.instagram.com/breninhavasconcelos",
+            "is_private": "Private",
+            "links": {
+                "self": "http://localhost:8000/api/followers/4/"
+            }
+        },
 
-    ....
+        ....
+     ]
 
 
 Busca pelo `id` no instagram
