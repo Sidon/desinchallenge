@@ -27,7 +27,8 @@ DATA = os.path.join(BASE_DIR, 'data')
 SECRET_KEY = 'fm$(wq_zov226qe7v*0tbee_$^c+vke++-$$*3w=#oc7y23l)n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if not os.environ.get('HEROKU') else False
+
 
 ALLOWED_HOSTS = '*'
 

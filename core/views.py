@@ -1,15 +1,10 @@
-import os
-from collections import namedtuple
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView
 from django_tables2 import RequestConfig
 from django.core.exceptions import ValidationError
-from rest_framework import authentication, permissions, viewsets, filters
+from rest_framework import authentication, permissions, viewsets, filters, renderers
 from rest_framework_tracking.mixins import LoggingMixin
-from django_filters.views import FilterView
-from django_tables2.views import SingleTableMixin
 from django_filters.rest_framework import DjangoFilterBackend
-from desinchallenge import settings
 from .models import Follower, Logdb
 from .serializers import FolowerSerializer, TrackSerializer, LogdbSerializer
 from .tables import FollowerTable, LogdbTable
@@ -109,19 +104,15 @@ class FollowerUpdateView(UpdateView):
 
 class FollowerViewSet(DefaultsMixin, LoggingMixin, viewsets.ModelViewSet):
     serializer_class = FolowerSerializer
-    search_fields = ('full_name' )
+    search_fields = ('full_name',)
     queryset = Follower.objects.all()
-
 
     def get_queryset(self):
         queryset = Follower.objects.all()
-        limit = self.request.query_params.get('limit', None)
-        last = self.request.query_params.get('last', None)
         empty = self.request.query_params.get('empty', None)
 
         # Filtrando por privacidade
         is_private = self.request.query_params.get('isprivate', None)
-
 
         # Filtrando por limite
         limit = self.request.query_params.get('limit', None)
